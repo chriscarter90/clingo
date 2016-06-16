@@ -1,5 +1,6 @@
+module Clingo
+end
+
 require "clingo/version"
 
-module Clingo
-  # Your code goes here...
-end
+require "clingo/result"

@@ -1,11 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe Clingo do
-  it 'has a version number' do
-    expect(Clingo::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
+RSpec.describe Clingo do
+  it "has a version number" do
+    expect(Clingo::VERSION).to eq "0.1.0"
   end
 end
