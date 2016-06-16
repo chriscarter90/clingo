@@ -4,10 +4,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'clingo/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "clingo"
-  spec.version       = Clingo::VERSION
-  spec.authors       = ["Chris Carter"]
-  spec.email         = ["chris.carter1@ntlworld.com"]
+  spec.name                      = "clingo"
+  spec.version                   = Clingo::VERSION
+  spec.authors                   = ["Chris Carter"]
+  spec.email                     = ["chris.carter1@ntlworld.com"]
+  spec.required_ruby_version     = ">= 2.3.0"
 
   spec.summary       = %q{Ruby wrapper for Clingo 4.X}
   spec.description   = %q{A ruby wrapper to integrate with Clingo 4.x}
