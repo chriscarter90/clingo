@@ -7,11 +7,11 @@ Gem::Specification.new do |spec|
   spec.name          = "clingo"
   spec.version       = Clingo::VERSION
   spec.authors       = ["Chris Carter"]
-  spec.email         = ["chris.carter@unboxedconsulting.com"]
+  spec.email         = ["chris.carter1@ntlworld.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Ruby wrapper for Clingo 4.X}
+  spec.description   = %q{A ruby wrapper to integrate with Clingo 4.x}
+  spec.homepage      = "https://github.com/chriscarter90/clingo"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
