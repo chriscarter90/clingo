@@ -2,15 +2,14 @@ require "spec_helper"
 
 RSpec.describe Clingo::Result::AnswerSet do
   describe "#clauses" do
-    it "returns an array of clauses given a solution" do
+    it "returns an array of clauses objects, given a solution" do
       solution = "clause(x,y) example(a,b)"
 
       answer_set = Clingo::Result::AnswerSet.new(solution)
 
-      expect(answer_set.clauses).to eq [
-        "clause(x,y)",
-        "example(a,b)"
-      ]
+      expect(answer_set.clauses).to all(be_a(Clingo::Result::Clause))
+
+      expect(answer_set.clauses.map(&:function)).to eq %w{clause example}
     end
 
     it "returns an array even if there is only one clause" do
@@ -18,9 +17,9 @@ RSpec.describe Clingo::Result::AnswerSet do
 
       answer_set = Clingo::Result::AnswerSet.new(solution)
 
-      expect(answer_set.clauses).to eq [
-        "yes"
-      ]
+      expect(answer_set.clauses).to all(be_a(Clingo::Result::Clause))
+
+      expect(answer_set.clauses.map(&:function)).to eq %w{yes}
     end
 
     it "returns empty if there are no clauses" do

@@ -6,12 +6,14 @@ module Clingo
       end
 
       def clauses
-        solution.split(" ")
+        @_clauses = solution.split(" ").map do |c|
+          Clause.new(c)
+        end
       end
 
       private
 
-      attr_reader :solution
+      attr_reader :solution, :_clauses
     end
   end
 end
