@@ -9,6 +9,7 @@ module Clingo
       rule(:num)      { match"[0-9]" }
       rule(:us)       { str("_") }
       rule(:comma)    { str(",") >> space? }
+      rule(:dbl_qt)   { str('"') }
       rule(:wordchar) { letter | num | us }
 
       rule(:space)    { match("\s").repeat(1) }
@@ -16,10 +17,12 @@ module Clingo
 
       rule(:lparen)   { str("(") >> space? }
       rule(:rparen)   { str(")") >> space? }
+
+      rule(:string)   { dbl_qt >> (space | wordchar).repeat >> dbl_qt }
       rule(:ident)    { lower >> wordchar.repeat >> space? }
       rule(:int)      { num.repeat(1) >> space? }
 
-      rule(:arg)      { func.as(:func) | ident.as(:ident) | int.as(:int) }
+      rule(:arg)      { func.as(:func) | string.as(:string) | ident.as(:ident) | int.as(:int) }
       rule(:args)     { arg >> (comma >> arg).repeat }
       rule(:func)     { ident.as(:name) >> lparen >> args.repeat(0,1).as(:args) >> rparen }
 

@@ -28,7 +28,9 @@ module Clingo
         structure.dig(:func, :args).map do |arg|
           case arg.keys.first
           when :ident
-            arg.fetch(:ident).str
+            arg.fetch(:ident).str.to_sym
+          when :string
+            arg.fetch(:string).str.gsub(/\A\"|\"\Z/, "")
           when :int
             arg.fetch(:int).str.to_i
           when :func
@@ -41,10 +43,10 @@ module Clingo
 
       private
 
-      attr_reader :clause, :tree, :structure
+      attr_reader :clause, :tree
 
       def structure
-        @structure ||= (@tree || parse(clause))
+        @_structure ||= (@tree || parse(clause))
       end
 
       def parse(str)

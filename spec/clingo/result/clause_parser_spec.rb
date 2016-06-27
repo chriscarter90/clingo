@@ -32,7 +32,7 @@ RSpec.describe Clingo::Result::ClauseParser do
 
     it "parses functions with some simple arguments" do
       expect_to_parse(
-        "function(1, hello)",
+        "function(1, hello, \"string\")",
         {
           func: {
             name: Parslet::Slice.new(0, "function"),
@@ -42,6 +42,9 @@ RSpec.describe Clingo::Result::ClauseParser do
               },
               {
                 ident: Parslet::Slice.new(12, "hello")
+              },
+              {
+                string: Parslet::Slice.new(19, "\"string\"")
               }
             ]
           }

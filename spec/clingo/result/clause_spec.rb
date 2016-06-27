@@ -29,9 +29,9 @@ RSpec.describe Clingo::Result::Clause do
 
   describe "#arguments" do
     it "returns the arguments of the clause" do
-      clause = Clingo::Result::Clause.new("function(a1,2)")
+      clause = Clingo::Result::Clause.new("function(a1,2, \"hello\")")
 
-      expect(clause.arguments).to eq ["a1", 2]
+      expect(clause.arguments).to eq [:a1, 2, "hello"]
     end
 
     it "returns functions as nested clauses" do
@@ -39,7 +39,7 @@ RSpec.describe Clingo::Result::Clause do
 
       expect(clause.arguments.length).to eq 2
 
-      expect(clause.arguments.first).to eq "a1"
+      expect(clause.arguments.first).to eq :a1
 
       expect(clause.arguments.last).to be_a Clingo::Result::Clause
       expect(clause.arguments.last.function).to eq "nest"
