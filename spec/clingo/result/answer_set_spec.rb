@@ -2,8 +2,12 @@ require "spec_helper"
 
 RSpec.describe Clingo::Result::AnswerSet do
   describe "#clauses" do
-    it "returns an array of clauses objects, given a solution" do
-      solution = "clause(x,y) example(a,b)"
+    it "returns an array of clauses objects, given a solution from Clingo" do
+      solution = {
+        "Value" => [
+          "clause(x,y)", "example(a,b)"
+        ]
+      }
 
       answer_set = Clingo::Result::AnswerSet.new(solution)
 
@@ -13,7 +17,11 @@ RSpec.describe Clingo::Result::AnswerSet do
     end
 
     it "returns an array even if there is only one clause" do
-      solution = "yes"
+      solution = {
+        "Value" => [
+          "yes"
+        ]
+      }
 
       answer_set = Clingo::Result::AnswerSet.new(solution)
 
@@ -23,7 +31,9 @@ RSpec.describe Clingo::Result::AnswerSet do
     end
 
     it "returns empty if there are no clauses" do
-      solution = ""
+      solution = {
+        "Value" => []
+      }
 
       answer_set = Clingo::Result::AnswerSet.new(solution)
 

@@ -8,19 +8,19 @@ module Clingo
       end
 
       def satisfiable?
-        !!(result =~ /^SATISFIABLE$/)
+        result.fetch("Result") == "SATISFIABLE"
       end
 
       def unsatisfiable?
-        !!(result =~ /^UNSATISFIABLE$/)
+        result.fetch("Result") == "UNSATISFIABLE"
       end
 
       def answer_sets
         return [] if unsatisfiable?
 
-        answer_strings = result.scan(ANSWER_SET_REGEX).map(&:first)
+        answer_sets = result.fetch("Call").first.fetch("Witnesses")
 
-        answer_strings.map { |s| AnswerSet.new(s) }
+        answer_sets.map { |s| AnswerSet.new(s) }
       end
 
       private

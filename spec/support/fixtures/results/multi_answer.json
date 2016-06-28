@@ -1,0 +1,40 @@
+{
+  "Solver": "clingo version 4.5.3",
+  "Input": [
+    "../test.lp"
+  ],
+  "Call": [
+    {
+      "Witnesses": [
+        {
+          "Value": [
+            "picked(3)", "picked(4)"
+          ]
+        },
+        {
+          "Value": [
+            "picked(2)", "picked(3)"
+          ]
+        },
+        {
+          "Value": [
+            "picked(2)", "picked(4)"
+          ]
+        }
+      ]
+    }
+  ],
+  "Result": "SATISFIABLE",
+  "Models": {
+    "Number": 3,
+    "More": "no"
+  },
+  "Calls": 1,
+  "Time": {
+    "Total": 0.001,
+    "Solve": 0.000,
+    "Model": 0.000,
+    "Unsat": 0.000,
+    "CPU": 0.000
+  }
+}

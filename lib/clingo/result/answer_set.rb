@@ -6,7 +6,7 @@ module Clingo
       end
 
       def clauses
-        @_clauses ||= solution.split(" ").map do |c|
+        @_clauses ||= solution.fetch("Value").map do |c|
           Clause.new(c)
         end
       end
