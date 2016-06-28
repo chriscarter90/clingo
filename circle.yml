@@ -2,6 +2,12 @@ machine:
   ruby:
     version: 2.3.0
 
+dependencies:
+  cache_directories:
+    - /home/ubuntu/gringo
+  pre:
+    - bash bin/install_clingo.sh
+
 test:
   override:
     - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml

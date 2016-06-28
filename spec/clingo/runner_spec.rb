@@ -8,7 +8,7 @@ RSpec.describe Clingo::Runner do
       )
 
       allow(runner).to receive(:`).with(
-        "bin/clingo --outf=2 -n 0 spec/support/fixtures/inputs/test.lp"
+        "clingo --outf=2 -n 0 spec/support/fixtures/inputs/test.lp"
       ).and_return('{"some":"json"}')
 
       expect(runner.run).to eq({ "some" => "json" })
@@ -21,7 +21,7 @@ RSpec.describe Clingo::Runner do
       )
 
       expect(runner).to receive(:`).with(
-        "bin/clingo --outf=2 -n 5 spec/support/fixtures/inputs/test.lp"
+        "clingo --outf=2 -n 5 spec/support/fixtures/inputs/test.lp"
       ).and_return('{}')
 
       runner.run

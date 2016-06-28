@@ -9,7 +9,7 @@ module Clingo
 
     def run
       JSON.parse(
-        %x[bin/clingo --outf=2 -n #{num_solutions} #{dir_glob.join(" ")}]
+        %x[clingo --outf=2 -n #{num_solutions} #{dir_glob.join(" ")}]
       )
     end
 
