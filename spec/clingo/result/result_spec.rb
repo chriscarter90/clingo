@@ -1,9 +1,9 @@
 require "spec_helper"
 
-RSpec.describe Clingo::Result::Result do
+RSpec.describe Clingo::Result::Response do
   describe "#satisfiable?" do
     it "returns true if the provided result is satisfiable" do
-      result = Clingo::Result::Result.new(
+      result = Clingo::Result::Response.new(
         JSON.parse(fixture_file("results/satisfiable.json"))
       )
 
@@ -11,7 +11,7 @@ RSpec.describe Clingo::Result::Result do
     end
 
     it "returns false if the provided result is not satisfiable" do
-      result = Clingo::Result::Result.new(
+      result = Clingo::Result::Response.new(
         JSON.parse(fixture_file("results/unsatisfiable.json"))
       )
 
@@ -21,7 +21,7 @@ RSpec.describe Clingo::Result::Result do
 
   describe "#unsatisfiable?" do
     it "returns true if the provided result is unsatisfiable" do
-      result = Clingo::Result::Result.new(
+      result = Clingo::Result::Response.new(
         JSON.parse(fixture_file("results/unsatisfiable.json"))
       )
 
@@ -29,7 +29,7 @@ RSpec.describe Clingo::Result::Result do
     end
 
     it "returns false if the provided result is not unsatisfiable" do
-      result = Clingo::Result::Result.new(
+      result = Clingo::Result::Response.new(
         JSON.parse(fixture_file("results/satisfiable.json"))
       )
 
@@ -40,7 +40,7 @@ RSpec.describe Clingo::Result::Result do
   describe "#answer_sets" do
     context "when unsatisfiable" do
       it "returns an empty array of answer sets" do
-        result = Clingo::Result::Result.new(
+        result = Clingo::Result::Response.new(
           JSON.parse(fixture_file("results/unsatisfiable.json"))
         )
 
@@ -51,7 +51,7 @@ RSpec.describe Clingo::Result::Result do
     context "when satisfiable" do
       context "with only one solution" do
         it "returns only one answer set" do
-          result = Clingo::Result::Result.new(
+          result = Clingo::Result::Response.new(
             JSON.parse(fixture_file("results/satisfiable.json"))
           )
 
@@ -66,7 +66,7 @@ RSpec.describe Clingo::Result::Result do
 
       context "with many solutions" do
         it "returns only one answer set" do
-          result = Clingo::Result::Result.new(
+          result = Clingo::Result::Response.new(
             JSON.parse(fixture_file("results/multi_answer.json"))
           )
 

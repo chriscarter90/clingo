@@ -7,7 +7,13 @@ RSpec.describe Clingo::Client do
         Dir.glob("spec/support/fixtures/inputs/test.lp")
       )
 
-      expect(client.solve).to be_a(Clingo::Result::Result)
+      runner = instance_double(Clingo::Runner)
+      allow(Clingo::Runner).to receive(:new).and_return(runner)
+      allow(runner).to receive(:run).and_return(
+        JSON.parse(fixture_file("results/satisfiable.json"))
+      )
+
+      expect(client.solve).to be_a(Clingo::Result::Response)
     end
   end
 end

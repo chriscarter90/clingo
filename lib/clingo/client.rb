@@ -7,7 +7,7 @@ module Clingo
     def solve
       runner = Runner.new(files)
 
-      Response.new(runner.run)
+      Result::Response.new(runner.run)
     end
 
     private
