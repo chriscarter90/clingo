@@ -1,4 +1,5 @@
 require "json"
+require "open3"
 
 module Clingo
   class Runner
@@ -8,9 +9,13 @@ module Clingo
     end
 
     def run
-      JSON.parse(
-        %x[clingo --outf=2 -n #{num_solutions} #{dir_glob.join(" ")}]
+      stdout, stderr, status = Open3.capture3(
+        "clingo", "--outf=2", "-n", num_solutions.to_s, *dir_glob
       )
+
+      raise "clingo failed: #{stderr.strip}" unless status.success?
+
+      JSON.parse(stdout)
     end
 
     private
