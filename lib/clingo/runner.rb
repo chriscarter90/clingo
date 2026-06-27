@@ -3,7 +3,7 @@ require "open3"
 
 module Clingo
   class Runner
-    def initialize(dir_glob, num_solutions = 0)
+    def initialize(dir_glob, num_solutions: 0)
       @dir_glob = dir_glob
       @num_solutions = num_solutions
     end

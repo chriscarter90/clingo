@@ -17,7 +17,7 @@ RSpec.describe Clingo::Runner do
     end
 
     it "only gets the number of models specified" do
-      runner = Clingo::Runner.new([file], 5)
+      runner = Clingo::Runner.new([file], num_solutions: 5)
 
       expect(Open3).to receive(:capture3)
         .with("clingo", "--outf=2", "-n", "5", file)
