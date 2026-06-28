@@ -237,16 +237,16 @@ attr_reader :solution, :_clauses
 
 ## Findings Summary
 
-| # | File | Severity | Status |
-|---|------|----------|--------|
-| 1 | `runner.rb:12` | Critical — security | Confirmed |
-| 2 | `client.rb:3` | Critical — API broken | Confirmed |
-| 3 | `result.rb:21` | Critical — crash | Confirmed |
-| 4 | `clause_parser.rb:9` | Critical — crash | Confirmed |
-| 5 | `runner.rb:11` | High — error handling | Plausible |
-| 6 | `clause.rb:52` | High — error handling | Plausible |
-| 7 | `result.rb:21` | High — crash | Plausible |
-| 8 | `clause_parser.rb:21` | Medium — data correctness | Plausible |
-| 9 | `result.rb:21` | Medium — data correctness | Plausible |
-| 10 | `result.rb:4` | Low — cleanup | Confirmed |
-| 11 | `answer_set.rb:16` | Low — cleanup | Confirmed |
+| # | File | Severity | Status | Fixed |
+|---|------|----------|--------|-------|
+| 1 | `runner.rb:12` | Critical — security | Confirmed | ✅ `ce6b341` |
+| 2 | `client.rb:3` | Critical — API broken | Confirmed | ✅ `0963ccd` |
+| 3 | `result.rb:21` | Critical — crash | Confirmed | ✅ `8e4205a` |
+| 4 | `clause_parser.rb:9` | Critical — crash | Confirmed | ✅ `9bd4b5c` |
+| 5 | `runner.rb:11` | High — error handling | Plausible | ✅ resolved by fix 1 |
+| 6 | `clause.rb:52` | High — error handling | Plausible | ✅ `e354931` |
+| 7 | `result.rb:21` | High — crash | Plausible | ⬜ |
+| 8 | `clause_parser.rb:21` | Medium — data correctness | Plausible | ⬜ |
+| 9 | `result.rb:21` | Medium — data correctness | Plausible | ⬜ |
+| 10 | `result.rb:4` | Low — cleanup | Confirmed | ⬜ |
+| 11 | `answer_set.rb:16` | Low — cleanup | Confirmed | ⬜ |
