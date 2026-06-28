@@ -1,50 +1,66 @@
 require "spec_helper"
 
 RSpec.describe Clingo::Result::Response do
+  def result_for(result_string)
+    Clingo::Result::Response.new({ "Result" => result_string })
+  end
+
   describe "#satisfiable?" do
     it "returns true if the provided result is satisfiable" do
-      result = Clingo::Result::Response.new(
-        JSON.parse(fixture_file("results/satisfiable.json"))
-      )
-
-      expect(result).to be_satisfiable
+      expect(result_for("SATISFIABLE")).to be_satisfiable
     end
 
     it "returns false if the provided result is not satisfiable" do
-      result = Clingo::Result::Response.new(
-        JSON.parse(fixture_file("results/unsatisfiable.json"))
-      )
-
-      expect(result).not_to be_satisfiable
+      expect(result_for("UNSATISFIABLE")).not_to be_satisfiable
     end
   end
 
   describe "#unsatisfiable?" do
     it "returns true if the provided result is unsatisfiable" do
-      result = Clingo::Result::Response.new(
-        JSON.parse(fixture_file("results/unsatisfiable.json"))
-      )
-
-      expect(result).to be_unsatisfiable
+      expect(result_for("UNSATISFIABLE")).to be_unsatisfiable
     end
 
     it "returns false if the provided result is not unsatisfiable" do
-      result = Clingo::Result::Response.new(
-        JSON.parse(fixture_file("results/satisfiable.json"))
-      )
+      expect(result_for("SATISFIABLE")).not_to be_unsatisfiable
+    end
+  end
 
-      expect(result).not_to be_unsatisfiable
+  describe "#unknown?" do
+    it "returns true if the result is unknown" do
+      expect(result_for("UNKNOWN")).to be_unknown
+    end
+
+    it "returns false if the result is not unknown" do
+      expect(result_for("SATISFIABLE")).not_to be_unknown
+    end
+  end
+
+  describe "#interrupted?" do
+    it "returns true if the result is interrupted" do
+      expect(result_for("INTERRUPTED")).to be_interrupted
+    end
+
+    it "returns false if the result is not interrupted" do
+      expect(result_for("SATISFIABLE")).not_to be_interrupted
     end
   end
 
   describe "#answer_sets" do
     context "when unsatisfiable" do
       it "returns an empty array of answer sets" do
-        result = Clingo::Result::Response.new(
-          JSON.parse(fixture_file("results/unsatisfiable.json"))
-        )
+        expect(result_for("UNSATISFIABLE").answer_sets).to be_empty
+      end
+    end
 
-        expect(result.answer_sets).to be_empty
+    context "when unknown" do
+      it "raises Clingo::UnknownResultError" do
+        expect { result_for("UNKNOWN").answer_sets }.to raise_error(Clingo::UnknownResultError)
+      end
+    end
+
+    context "when interrupted" do
+      it "raises Clingo::InterruptedError" do
+        expect { result_for("INTERRUPTED").answer_sets }.to raise_error(Clingo::InterruptedError)
       end
     end
 

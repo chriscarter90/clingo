@@ -8,24 +8,38 @@ module Clingo
       end
 
       def satisfiable?
-        response.fetch("Result") == "SATISFIABLE"
+        result == "SATISFIABLE"
       end
 
       def unsatisfiable?
-        response.fetch("Result") == "UNSATISFIABLE"
+        result == "UNSATISFIABLE"
+      end
+
+      def unknown?
+        result == "UNKNOWN"
+      end
+
+      def interrupted?
+        result == "INTERRUPTED"
       end
 
       def answer_sets
         return [] if unsatisfiable?
+        raise Clingo::UnknownResultError if unknown?
+        raise Clingo::InterruptedError   if interrupted?
 
-        answer_sets = response.fetch("Call").first.fetch("Witnesses")
+        witnesses = response.fetch("Call").first&.fetch("Witnesses", []) || []
 
-        answer_sets.map { |s| Result::AnswerSet.new(s) }
+        witnesses.map { |s| Result::AnswerSet.new(s) }
       end
 
       private
 
       attr_reader :response
+
+      def result
+        response.fetch("Result")
+      end
     end
   end
 end

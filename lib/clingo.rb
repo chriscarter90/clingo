@@ -5,6 +5,7 @@ module Clingo
 end
 
 require "clingo/version"
+require "clingo/errors"
 
 require "clingo/runner"
 require "clingo/result"
