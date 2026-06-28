@@ -64,4 +64,12 @@ RSpec.describe Clingo::Result::Clause do
       expect(clause.arguments).to be_empty
     end
   end
+
+  describe "parse errors" do
+    it "raises Clingo::ParseError for unrecognised input, not a parslet internal error" do
+      clause = Clingo::Result::Clause.new("@invalid!")
+
+      expect { clause.function }.to raise_error(Clingo::ParseError, /could not parse clause/)
+    end
+  end
 end

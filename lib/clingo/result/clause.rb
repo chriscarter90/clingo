@@ -51,6 +51,8 @@ module Clingo
 
       def parse(str)
         ClauseParser.new.parse(str)
+      rescue Parslet::ParseFailed
+        raise Clingo::ParseError, "could not parse clause: #{str.inspect}"
       end
     end
   end
