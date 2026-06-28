@@ -19,7 +19,7 @@ jobs:
           bundler-cache: true
 
       - name: Set up Homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@main
 
       - name: Install clingo
         run: brew install clingo
