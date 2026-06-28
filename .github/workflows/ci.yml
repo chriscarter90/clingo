@@ -18,6 +18,9 @@ jobs:
           ruby-version: "3.2"
           bundler-cache: true
 
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
       - name: Install clingo
         run: brew install clingo
 
