@@ -20,7 +20,8 @@ module Clingo
 
       rule(:string)   { dbl_qt >> (space | wordchar).repeat >> dbl_qt }
       rule(:ident)    { lower >> wordchar.repeat >> space? }
-      rule(:int)      { num.repeat(1) >> space? }
+      rule(:minus)    { str("-") }
+      rule(:int)      { minus.maybe >> num.repeat(1) >> space? }
 
       rule(:arg)      { func.as(:func) | string.as(:string) | ident.as(:ident) | int.as(:int) }
       rule(:args)     { arg >> (comma >> arg).repeat }

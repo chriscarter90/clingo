@@ -46,6 +46,12 @@ RSpec.describe Clingo::Result::Clause do
       expect(clause.arguments.last.arguments).to eq [1, 2]
     end
 
+    it "returns negative integers as negative integers" do
+      clause = Clingo::Result::Clause.new("edge(-1, -42)")
+
+      expect(clause.arguments).to eq [-1, -42]
+    end
+
     it "returns an empty array if there are no arguments" do
       clause = Clingo::Result::Clause.new("atom")
 

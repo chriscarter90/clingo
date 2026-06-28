@@ -30,6 +30,21 @@ RSpec.describe Clingo::Result::ClauseParser do
       )
     end
 
+    it "parses functions with negative integer arguments" do
+      expect_to_parse(
+        "edge(-1, -42)",
+        {
+          func: {
+            name: Parslet::Slice.new(0, "edge"),
+            args: [
+              { int: Parslet::Slice.new(5, "-1") },
+              { int: Parslet::Slice.new(9, "-42") }
+            ]
+          }
+        }
+      )
+    end
+
     it "parses functions with some simple arguments" do
       expect_to_parse(
         "function(1, hello, \"string\")",
